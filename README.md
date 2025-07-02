@@ -1,4 +1,4 @@
-# 🎵 YT Music Deck
+# 🎵 YT Music for StreamDock
 
 > Control YouTube Music from your Stream Deck. One touch. Instant music.
 
