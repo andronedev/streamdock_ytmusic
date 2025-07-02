@@ -1,0 +1,54 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4 
+        with:
+          node-version: 20
+
+      - name: Install deps – StreamDock plugin
+        working-directory: ./streamdock_plugin/plugin
+        run: npm ci
+
+      - name: Build StreamDock plugin
+        working-directory: ./streamdock_plugin/plugin
+        run: npm run build:ci
+
+      - name: Read version
+        id: version
+        run: |
+          echo "version=$(node -p "require('./streamdock_plugin/plugin/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Package artefacts
+        run: |
+          zip -r "chrome_extension-${{ steps.version.outputs.version }}.zip" chrome_extension
+          zip -r "streamdock_plugin-${{ steps.version.outputs.version }}.zip" streamdock_plugin
+          
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: Release v${{ steps.version.outputs.version }}
+          generate_release_notes: true
+          files: |
+            chrome_extension-${{ steps.version.outputs.version }}.zip
+            streamdock_plugin-${{ steps.version.outputs.version }}.zip

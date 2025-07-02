@@ -1,0 +1,15 @@
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Build output
+/chrome_extension/*.zip
+/streamdock_plugin/*.sdPlugin
+/streamdock_plugin/dev.androne.plugin.streamdock.ytmusic.sdPlugin/plugin/build
+/streamdock_plugin/dev.androne.plugin.streamdock.ytmusic.sdPlugin/plugin/log
+/streamdock_plugin/plugin/build
+# OS generated files
+.DS_Store
+Thumbs.db

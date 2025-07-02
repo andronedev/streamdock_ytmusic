@@ -1,0 +1,39 @@
+<!-- propertyInspector/ytmusic/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YT Music Deck Settings</title>
+    <link rel="stylesheet" href="../utils/sdpi.css">
+</head>
+<body>
+    <div class="sdpi-wrapper">
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">WebSocket Port</div>
+            <input class="sdpi-item-value" type="number" id="websocketPort" value="9489" oninput="updateSettings()">
+        </div>
+    </div>
+    <script src="../utils/sdtools.js"></script>
+    <script>
+        let websocketPort = 9489;
+
+        function updateSettings() {
+            websocketPort = document.getElementById('websocketPort').value;
+            const settings = {
+                websocketPort: parseInt(websocketPort, 10)
+            };
+            $PI.setGlobalSettings(settings);
+        }
+
+        $PI.onDidReceiveGlobalSettings(({ payload }) => {
+            if (payload.settings.websocketPort) {
+                websocketPort = payload.settings.websocketPort;
+                document.getElementById('websocketPort').value = websocketPort;
+            }
+        });
+
+        $PI.onConnected(() => {
+            $PI.getGlobalSettings();
+        });
+    </script>
+</body>
+</html>

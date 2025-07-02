@@ -1,0 +1,105 @@
+{
+  "Actions": [
+    {
+      "Icon": "static/ytmusic-icon.png",
+      "Name": "YT Music Control",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/ytmusic-icon.png",
+          "TitleAlignment": "center",
+          "FontSize": "8"
+        }
+      ],
+      "Settings": {
+        "titleFormat": "title-artist",
+        "timeDisplay": "elapsed",
+        "showTitle": true
+      },
+      "Controllers": [],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Control YouTube Music",
+      "UUID": "dev.androne.plugin.streamdock.ytmusic.control",
+      "PropertyInspectorPath": "propertyInspector/ytmusic/index.html"
+    },
+    {
+      "Icon": "static/ytmusic-icon.png",
+      "Name": "YT Music Artwork",
+      "States": [
+        {
+          "Image": "static/ytmusic-icon.png",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "Controllers": [],
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Display YouTube Music Artwork",
+      "UUID": "dev.androne.plugin.streamdock.ytmusic.artwork",
+      "PropertyInspectorPath": "propertyInspector/ytmusic/index.html"
+    },
+    {
+      "Icon": "static/next-icon.png",
+      "Name": "YT Music Next Track",
+      "States": [
+        {
+          "Image": "static/next-icon.png",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "Controllers": [],
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Play Next Track",
+      "UUID": "dev.androne.plugin.streamdock.ytmusic.next",
+      "PropertyInspectorPath": "propertyInspector/ytmusic/index.html"
+    },
+    {
+      "Icon": "static/previous-icon.png",
+      "Name": "YT Music Previous Track",
+      "States": [
+        {
+          "Image": "static/previous-icon.png",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "Controllers": [],
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Play Previous Track",
+      "UUID": "dev.androne.plugin.streamdock.ytmusic.previous",
+      "PropertyInspectorPath": "propertyInspector/ytmusic/index.html"
+    }
+  ],
+  "SDKVersion": 1,
+  "Author": "MiraBox",
+  "Name": "YT Music Deck",
+  "Icon": "static/ytmusic-icon.png",
+  "CodePathWin": "plugin/index.js",
+  "CodePathMac": "plugin/index.js",
+  "Description": "Control YouTube Music via Stream Dock",
+  "Category": "Music",
+  "CategoryIcon": "static/ytmusic-icon.png",
+  "Version": "1.0.0",
+  "URL": "https://mirabox.key123.vip/home",
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "7"
+    }
+  ],
+  "Software": {
+    "MinimumVersion": "3.10.188.226"
+  },
+  "Nodejs": {
+    "Version": "20"
+  }
+}
