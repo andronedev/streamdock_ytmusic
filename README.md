@@ -17,9 +17,9 @@ YT Music Deck is split into two tightly integrated components:
 
 ## 🚀 Key Features
 
-- 🎶 **Live Track Display** — Real-time track title, artist, and album cover
-- 🕹️ **Instant Controls** — Play, pause, skip forward/backward, adjust volume
-- 🔄 **Seamless Integration** — Works perfectly with Chrome and Stream Deck
+- 🎶 **Live Track Display** — Real-time album cover
+- 🕹️ **Instant Controls** — Play, pause, skip forward/backward
+- 🔄 **Seamless Integration** — Works perfectly with Chrome and Stream Dock (like mirabox)
 - 🧘 **Discreet & Efficient** — No clutter, no config — just works in the background
 - 🔒 **100% Local** — No internet communication, no authentication needed
 - 🛠️ **Open Source** — Transparent, customizable, and free
@@ -29,7 +29,6 @@ YT Music Deck is split into two tightly integrated components:
 ### Prerequisites
 - Google Chrome browser
 - StreamDock device and software
-- YouTube Music account
 
 ### Chrome Extension Setup
 [Download the YT Music Controller extension](https://chromewebstore.google.com/detail/foieahehjicjjkcccgipljhdhmohlebn?utm_source=item-share-cb) from the Chrome Web Store.
@@ -47,11 +46,8 @@ YT Music Deck is split into two tightly integrated components:
 4. **Control from Deck** — Use your Stream Deck to control playback instantly
 
 ### Available Actions
-- **Play/Pause** — Toggle playback
 - **Next/Previous** — Skip tracks
-- **Volume Control** — Adjust audio level
-- **Track Display** — Shows current song info and artwork
-
+- **Track Display & Toggle playback** — Toggle playback, Shows current song artwork
 
 ## 🤝 Contributing
 
