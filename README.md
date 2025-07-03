@@ -34,7 +34,7 @@ YT Music Deck is split into two tightly integrated components:
 [Download the YT Music Controller extension](https://chromewebstore.google.com/detail/foieahehjicjjkcccgipljhdhmohlebn?utm_source=item-share-cb) from the Chrome Web Store.
 
 ### StreamDock Plugin Setup
-1. Download the YT Music Deck plugin
+1. Download the YT Music Deck plugin [here](https://github.com/andronedev/streamdock_ytmusic/releases/latest).
 2. Put the plugin file into the StreamDock plugins directory
 3. Open StreamDock software and it will automatically detect the new plugin
 
