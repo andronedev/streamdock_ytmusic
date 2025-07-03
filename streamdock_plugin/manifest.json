@@ -2,35 +2,11 @@
   "Actions": [
     {
       "Icon": "static/ytmusic-icon.png",
-      "Name": "YT Music Control",
-      "DisableAutomaticStates": true,
-      "States": [
-        {
-          "Image": "static/ytmusic-icon.png",
-          "TitleAlignment": "center",
-          "FontSize": "8"
-        }
-      ],
-      "Settings": {
-        "titleFormat": "title-artist",
-        "timeDisplay": "elapsed",
-        "showTitle": true
-      },
-      "Controllers": [],
-      "UserTitleEnabled": true,
-      "SupportedInMultiActions": true,
-      "Tooltip": "Control YouTube Music",
-      "UUID": "dev.androne.plugin.streamdock.ytmusic.control",
-      "PropertyInspectorPath": "propertyInspector/ytmusic/index.html"
-    },
-    {
-      "Icon": "static/ytmusic-icon.png",
       "Name": "YT Music Artwork",
       "States": [
         {
           "Image": "static/ytmusic-icon.png",
-          "TitleAlignment": "middle",
-          "FontSize": "12"
+          "showTitle": false
         }
       ],
       "Controllers": [],
@@ -46,8 +22,7 @@
       "States": [
         {
           "Image": "static/next-icon.png",
-          "TitleAlignment": "middle",
-          "FontSize": "12"
+          "showTitle": false
         }
       ],
       "Controllers": [],
@@ -63,8 +38,7 @@
       "States": [
         {
           "Image": "static/previous-icon.png",
-          "TitleAlignment": "middle",
-          "FontSize": "12"
+          "showTitle": false
         }
       ],
       "Controllers": [],
@@ -82,7 +56,7 @@
   "CodePathWin": "plugin/index.js",
   "CodePathMac": "plugin/index.js",
   "Description": "Control YouTube Music via Stream Dock",
-  "Category": "Music",
+  "Category": "YT Music",
   "CategoryIcon": "static/ytmusic-icon.png",
   "Version": "1.0.0",
   "URL": "https://mirabox.key123.vip/home",
