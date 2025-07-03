@@ -39,7 +39,7 @@ jobs:
       - name: Package artefacts
         run: |
           zip -r "chrome_extension-${{ steps.version.outputs.version }}.zip" chrome_extension
-          zip -r "dev.androne.plugin.streamdock.ytmusic.sdPlugin" streamdock_plugin
+          zip -r "dev.androne.plugin.streamdock.ytmusic.sdPlugin.zip" streamdock_plugin
           
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
