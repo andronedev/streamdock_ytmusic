@@ -1,5 +1,5 @@
 # 🎵 YT Music for StreamDock
-
+![screen](https://github.com/user-attachments/assets/0a88f9ed-c13b-48bb-b790-4cf4a67bfcd2)
 > Control YouTube Music from your Stream Deck. One touch. Instant music.
 
 [![Chrome Extension](https://img.shields.io/badge/chrome_extension-green?logo=googlechrome)](https://chromewebstore.google.com/detail/foieahehjicjjkcccgipljhdhmohlebn?utm_source=item-share-cb)
