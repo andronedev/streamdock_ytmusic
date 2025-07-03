@@ -2,6 +2,7 @@ const { Plugins, Actions, log, EventEmitter } = require('./utils/plugin');
 const WebSocket = require('ws');
 const fs = require('fs');
 const path = require('path');
+const { exec } = require('child_process');
 
 const plugin = new Plugins('dev.androne.plugin.streamdock.ytmusic');
 
@@ -20,6 +21,21 @@ const NEXT_ICON_PATH = 'static/next-icon.png';
 const PREVIOUS_ICON_PATH = 'static/previous-icon.png';
 
 const tempImageDir = path.join(__dirname, 'temp_images');
+
+const openYouTubeMusic = () => {
+    const url = 'https://music.youtube.com';
+    const command = process.platform === 'darwin' ? `open "${url}"` : 
+                   process.platform === 'win32' ? `start "${url}"` : 
+                   `xdg-open "${url}"`;
+    
+    exec(command, (error) => {
+        if (error) {
+            log.error(`Error opening YouTube Music: ${error.message}`);
+        } else {
+            log.info('YouTube Music opened successfully');
+        }
+    });
+};
 
 const cleanupOldArtwork = () => {
     if (!fs.existsSync(tempImageDir)) return;
@@ -108,8 +124,13 @@ const updateButton = (context) => {
     const actionUUID = Actions.actions[context];
 
     if (!chromeWs || chromeWs.readyState !== WebSocket.OPEN) {
-        plugin.setImage(context, ERROR_ICON_PATH);
-        plugin.setTitle(context, 'No Chrome');
+        if (actionUUID === 'dev.androne.plugin.streamdock.ytmusic.artwork') {
+            plugin.setImage(context, DEFAULT_ICON_PATH);
+        } else if (actionUUID === 'dev.androne.plugin.streamdock.ytmusic.next') {
+            plugin.setImage(context, NEXT_ICON_PATH);
+        } else if (actionUUID === 'dev.androne.plugin.streamdock.ytmusic.previous') {
+            plugin.setImage(context, PREVIOUS_ICON_PATH);
+        }
         lastArtwork[context] = null;
         return;
     }
@@ -134,27 +155,11 @@ const updateButton = (context) => {
                 lastArtwork[context] = null;
             }
         } else if (actionUUID === 'dev.androne.plugin.streamdock.ytmusic.next') {
-            plugin.setTitle(context, 'Next');
+
             plugin.setImage(context, NEXT_ICON_PATH);
         } else if (actionUUID === 'dev.androne.plugin.streamdock.ytmusic.previous') {
-            plugin.setTitle(context, 'Previous');
+
             plugin.setImage(context, PREVIOUS_ICON_PATH);
-        } else {
-            plugin.setTitle(context, `${title}\n${artist}`);
-            if (artwork) {
-                if (artwork !== lastArtwork[context]) {
-                    try {
-                        plugin.setImage(context, artwork);
-                        lastArtwork[context] = artwork;
-                    } catch (err) {
-                        log.error(`Failed to set artwork for control button ${context}: ${err.message}`);
-                        plugin.setImage(context, playing ? PAUSE_ICON_PATH : PLAY_ICON_PATH);
-                    }
-                }
-            } else {
-                plugin.setImage(context, playing ? PAUSE_ICON_PATH : PLAY_ICON_PATH);
-                lastArtwork[context] = null;
-            }
         }
     } else {
         log.warn(`No track information available for context ${context}.`);
@@ -173,26 +178,25 @@ const updateAllButtons = () => {
     activeContexts.forEach(updateButton);
 };
 
-plugin.control = new Actions({
+plugin.artwork = new Actions({
     _willAppear({ context }) {
         updateButton(context);
     },
     keyUp({ context }) {
         if (!chromeWs || chromeWs.readyState !== WebSocket.OPEN) {
-            log.warn('Cannot send command: Chrome Extension WebSocket not connected.');
+            // Pas de connexion Chrome - ouvrir YouTube Music
+            openYouTubeMusic();
             return;
         }
-        const command = currentTrack.playing ? 'pause' : 'play';
-        chromeWs.send(JSON.stringify({ cmd: command }));
-    },
-    _willDisappear({ context }) {
-        delete lastArtwork[context];
-    }
-});
-
-plugin.artwork = new Actions({
-    _willAppear({ context }) {
-        updateButton(context);
+        
+        if (currentTrack.title) {
+            // Musique en cours - toggle play/pause
+            const command = currentTrack.playing ? 'pause' : 'play';
+            chromeWs.send(JSON.stringify({ cmd: command }));
+        } else {
+            // Pas de musique - ouvrir YouTube Music
+            openYouTubeMusic();
+        }
     },
     _willDisappear({ context }) {
         delete lastArtwork[context];
