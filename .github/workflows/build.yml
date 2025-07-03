@@ -39,8 +39,9 @@ jobs:
       - name: Package artefacts
         run: |
           zip -r "chrome_extension-${{ steps.version.outputs.version }}.zip" chrome_extension
-          zip -r "dev.androne.plugin.streamdock.ytmusic.sdPlugin" streamdock_plugin
-          
+          mv streamdock_plugin dev.androne.plugin.streamdock.ytmusic.sdPlugin
+          zip -r "streamdock_plugin-${{ steps.version.outputs.version }}.zip" dev.androne.plugin.streamdock.ytmusic.sdPlugin
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         env:
@@ -51,4 +52,4 @@ jobs:
           generate_release_notes: true
           files: |
             chrome_extension-${{ steps.version.outputs.version }}.zip
-            dev.androne.plugin.streamdock.ytmusic.sdPlugin
+            streamdock_plugin-${{ steps.version.outputs.version }}.zip
